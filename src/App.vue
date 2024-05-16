@@ -1,5 +1,7 @@
 <script setup>
 import { reactive } from 'vue';
+import Calculadora from './components/Calculadora.vue';
+import Resultado from './components/Resultado.vue';
 
 const estado = reactive({
   resultado: '',
@@ -43,39 +45,8 @@ const calcular = () => {
 
 <template>
   <div class="container">
-    <h2 class="text-center">Calculadora Aritmética</h2>
-    <hr>
-    <br>
-    <div class="row">
-      <div class="col-4 text-center">
-        <label class="">NUMERO 1</label>
-        <input type="number" v-model="estado.valor1" @input="calcular" class="form-control">
-      </div>
-      <div class="col-4 text-center">
-        <label class="">NUMERO 2</label>
-        <input type="number" v-model="estado.valor2" @input="calcular" class="form-control">
-      </div>
-      <div class="col-4 text-center">
-        <label>OPERADOR</label>
-        <select class="form-control" v-model="estado.operador" @change="calcular">
-          <option class="text-center" value="+">+ ADIÇÃO</option>
-          <option class="text-center" value="-">- SUBTRAÇÃO</option>
-          <option class="text-center" value="*">* MULTIPLICAÇÃO</option>
-          <option class="text-center" value="/">/ DIVISÃO</option>
-        </select>
-      </div>
-    </div>
-    <br>
-    <br>
-    <hr>
-    <div class="resultado-div text-center">
-      <h2>RESULTADO:</h2>
-      <br>
-      <div class="resultado text-center col-4">
-        <h2>O resultado é <span id="resultado">{{ estado.resultado }}</span></h2>
-      </div>
-    </div>
-
+    <Calculadora :calcular="calcular" :operador="estado.operador" :valor1="estado.valor1" :valor2="estado.valor2" ></Calculadora>
+    <Resultado :resultado="estado.resultado"></Resultado>
   </div>
 </template>
 
