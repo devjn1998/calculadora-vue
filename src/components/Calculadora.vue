@@ -32,7 +32,7 @@ const operator = ref(null)
       >
         <option class="text-center" value="+">+ ADIÇÃO</option>
         <option class="text-center" value="-">- SUBTRAÇÃO</option>
-        <option class="text-center" value="*">\\8 MULTIPLICAÇÃO</option>
+        <option class="text-center" value="*">* MULTIPLICAÇÃO</option>
         <option class="text-center" value="/">/ DIVISÃO</option>
       </select>
     </div>
