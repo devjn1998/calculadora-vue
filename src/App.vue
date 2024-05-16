@@ -1,51 +1,61 @@
 <script setup>
-import { reactive } from 'vue';
-import Calculadora from './components/Calculadora.vue';
-import Resultado from './components/Resultado.vue';
+import { reactive } from "vue";
+import Calculadora from "./components/Calculadora.vue";
+import Resultado from "./components/Resultado.vue";
 
 const estado = reactive({
-  resultado: '',
-  valor1: '',
-  valor2: '',
-  operador: '',
+  resultado: "",
+  valor1: "",
+  valor2: "",
+  operador: "",
   operadores: [],
-})
+});
+
+const doCalculate = (obj) => {
+  if (obj.n1 && obj.n2) {
+    estado.valor1 = obj.n1;
+    estado.valor2 = obj.n2;
+    estado.operador = obj.operator;
+
+    calcular()
+  }
+};
 
 const somar = (n1, n2) => {
   return n1 + n2;
-}
+};
 const subtrair = (n1, n2) => {
   return n1 - n2;
-}
+};
 const multiplicar = (n1, n2) => {
   return n1 * n2;
-}
+};
 const dividir = (n1, n2) => {
   return n1 / n2;
-}
+};
 
 const calcular = () => {
-  const { valor1, valor2, operador } = estado
-  let resultado = ''
+  const { valor1, valor2, operador } = estado;
+  let resultado = "";
 
-  if (operador === '+') {
-    resultado = somar(parseFloat(valor1), parseFloat(valor2))
-  } else if (operador === '-') {
-    resultado = subtrair(parseFloat(valor1), parseFloat(valor2))
-  } else if (operador === '*') {
-    resultado = multiplicar(parseFloat(valor1), parseFloat(valor2))
-  } else if (operador === '/') {
-    resultado = dividir(parseFloat(valor1), parseFloat(valor2))
+  if (operador === "+") {
+    resultado = somar(parseFloat(valor1), parseFloat(valor2));
+  } else if (operador === "-") {
+    resultado = subtrair(parseFloat(valor1), parseFloat(valor2));
+  } else if (operador === "*") {
+    resultado = multiplicar(parseFloat(valor1), parseFloat(valor2));
+  } else if (operador === "/") {
+    resultado = dividir(parseFloat(valor1), parseFloat(valor2));
   }
 
-  estado.resultado = resultado
-}
-
+  estado.resultado = resultado;
+};
 </script>
 
 <template>
   <div class="container">
-    <Calculadora :calcular="calcular" :operador="estado.operador" :valor1="estado.valor1" :valor2="estado.valor2" ></Calculadora>
+    <Calculadora :calcular="calcular" :operador="estado.operador" :valor1="estado.valor1" :valor2="estado.valor2"
+      @calculate="doCalculate"></Calculadora>
     <Resultado :resultado="estado.resultado"></Resultado>
   </div>
 </template>
@@ -55,7 +65,7 @@ select {
   font-weight: bold;
 
   option {
-    font-weight: bold
+    font-weight: bold;
   }
 }
 
@@ -72,6 +82,5 @@ select {
   padding: 28px;
   color: white;
   border-radius: 12px;
-  
 }
 </style>
